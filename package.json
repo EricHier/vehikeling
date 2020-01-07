@@ -1,0 +1,32 @@
+{
+  "name": "carmanager",
+  "version": "1.0.0",
+  "description": "A service for keeping track of you car's maintainance.  ",
+  "author": "EricHier",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.8.5",
+    "@nuxtjs/axios": "^5.9.0",
+    "@nuxtjs/bulma": "^1.2.1",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "core-js": "^2.6.11",
+    "firebase": "^7.6.1",
+    "firebase-auth": "^0.1.2",
+    "nuxt": "^2.11.0",
+    "stripe": "^7.14.0",
+    "uuid": "^3.3.3",
+    "vue": "^2.6.11",
+    "vue-scrollto": "^2.17.1",
+    "workbox-cdn": "latest"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.1.1"
+  }
+}

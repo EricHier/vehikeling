@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /impressum/
+Disallow: /datenschutz/
+Disallow: /cars/
+Disallow: /id/
+Disallow: /id/*
+Disallow: /kontakt/
+Allow: /
