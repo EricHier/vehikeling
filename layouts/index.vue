@@ -6,12 +6,12 @@
       </div>
       <div class="hero-body">
         <div class="container">
-          <h1 class="title is-2" id="title">
+          <h2 class="title is-2" id="title">
             vehikeling
-          </h1>
-          <h2 class="subtitle is-4">
-            Die Vehikel-Servecing App für deine Fahrzeuge.
           </h2>
+          <h1 class="subtitle is-4">
+            Die Vehikel-Servecing App für deine Fahrzeuge. Ganz einfach Wartungen und Services eintragen und verwalten.
+          </h1>
         </div>
       </div>
     </section>
