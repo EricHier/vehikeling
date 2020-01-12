@@ -18,14 +18,17 @@
     "core-js": "^2.6.11",
     "firebase": "^7.6.1",
     "firebase-auth": "^0.1.2",
+    "node-firestore-import-export": "^0.14.0",
     "nuxt": "^2.11.0",
     "stripe": "^7.14.0",
     "uuid": "^3.3.3",
     "vue": "^2.6.11",
     "vue-scrollto": "^2.17.1",
-    "workbox-cdn": "latest"
+    "workbox-cdn": "latest",
+    "xss": "^1.0.6"
   },
   "devDependencies": {
+    "@google-cloud/firestore": "^3.3.2",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.1.1"
   }
