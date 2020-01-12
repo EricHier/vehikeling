@@ -98,3 +98,5 @@ firestore.indexes.json
 firestore.rules
 /.firebase
 /services/firebase-api.js
+/static/delete.png
+/static/edit.png
