@@ -9,7 +9,7 @@
         <span v-if="car.kennzeichen !== ''">Kennzeichen: {{car.kennzeichen}} <br></span>
         <span v-if="car.name.length !== 0">{{car.hersteller + " " + car.model}}</span>
       </p>
-      <p v-if="details">
+      <p v-if="details" class="no-bottom-margin">
         <span v-if="car.baujahr !== ''">Baujahr: {{car.baujahr}} <br></span>
         <span v-if="car.color !== ''">Farbe: {{car.color}} <br></span>
         <span v-if="car.fahrgestellnummer !== ''">Fahrgestellnummer: {{car.fahrgestellnummer}} <br></span>
