@@ -9,10 +9,13 @@
           <Input v-on:newValue="newDescription" v-bind:default="description" v-bind:label="'Details'" v-bind:is-big="true" v-bind:required="false"
                  v-bind:image="false" v-bind:disabled="disabled"/>
 
+          <Input v-on:newValue="newKilometerstand" v-bind:default="kilometerstand" v-bind:label="'Kilometerstand'" v-bind:is-big="false" v-bind:required="false"
+                 v-bind:image="false" v-bind:disabled="disabled" v-bind:number="true"/>
+
           <label class="label">Datum</label>
           <input type="date" class="date input genug-margin" v-model="date" required/>
 
-          <label class="label">Kategorie</label>
+          <label class="label">Kategorie *</label>
           <div class="genug-margin select select-full-width">
             <select required v-model="category" class="select select-full-width">
               <option>Kauf</option>
@@ -50,6 +53,7 @@
                 titel: "",
                 description: "",
                 id: "",
+                kilometerstand: "",
                 disabled: false,
             }
         },
@@ -62,6 +66,9 @@
             },
             onPopupClick: function () {
                 this.$emit("close");
+            },
+            newKilometerstand: function (e) {
+                this.kilometerstand = e;
             },
             onFormClick: function (e) {
                 e.stopPropagation();
@@ -92,6 +99,7 @@
                     "description": self.description,
                     "category": self.category,
                     "date": self.date,
+                    "kilometerstand": self.kilometerstand,
                     "id": self.id
                 };
 

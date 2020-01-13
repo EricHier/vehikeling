@@ -1,6 +1,7 @@
 <template>
   <div class="content card roundBorders left-border-service serviceContainer" v-on:mouseover="mouseover = true" v-on:mouseout="mouseover = false">
     <h4 class="subheading is-4">{{service.title}}</h4>
+    <p class="" v-if="service.kilometerstand !== '' && service.hasOwnProperty('kilometerstand')">{{service.kilometerstand + " Kilometer"}}</p>
     <p class="no-bottom-margin" v-if="service.description !== ''">{{service.description}}</p>
     <img class="delete-img" src="../static/delete.png" alt="Delete Service" v-on:click="deleteService" v-bind:class="{'del-active' : deleteActive}"/>
     <img class="edit-img" src="../static/edit.png" alt="Edit Service" v-on:click="editService" />
