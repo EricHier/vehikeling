@@ -15,7 +15,7 @@
         <div class="navbar-end">
           <a class="navbar-item" v-on:click="openRoute('/cars')">Meine Autos</a>
           <a class="navbar-item" v-on:click="openRoute('/kontakt')">Kontakt</a>
-          <a class="navbar-item non-hover">{{userName}}</a>
+          <a class="navbar-item non-hover" v-on:click="openRoute('/profile')">{{userName}}</a>
         </div>
       </div>
     </div>

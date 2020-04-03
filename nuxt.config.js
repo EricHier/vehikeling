@@ -42,7 +42,8 @@ export default {
   ** Global CSS
   */
   css: [
-    "~/css/main.css"
+    "~/css/main.css",
+    "~/assets/sass/index.scss",
   ],
 
   /*
