@@ -11,13 +11,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/auth": "^4.8.5",
-    "@nuxtjs/axios": "^5.9.0",
     "@nuxtjs/bulma": "^1.2.1",
     "@nuxtjs/pwa": "^3.0.0-0",
     "core-js": "^2.6.11",
     "firebase": "^7.6.1",
-    "firebase-auth": "^0.1.2",
     "node-firestore-import-export": "^0.14.0",
     "nuxt": "^2.11.0",
     "stripe": "^7.14.0",
