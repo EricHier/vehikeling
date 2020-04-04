@@ -4,9 +4,14 @@
       <h1 class="title">Profil</h1>
       <h4 class="subtitle">Hier kannst du die Daten deines Profils einsehen und bearbeiten. </h4>
 
-      <Error v-bind:error="error" v-if="error !== ''"></Error>
+      <Error v-bind:error="error" v-if="error !== ''" />
 
-      <div class="columns">
+      <p class="title content" v-if="user === null" style="margin-top: 1rem;">
+        Es scheint so als bist du nicht angemeldet.
+        <a href="/" title="Startseite">Hier</a> geht es zum Login.
+      </p>
+
+      <div class="columns" v-if="user !== null">
         <div class="column content" v-if="user != null">
           <h2 class="title is-4">Profil</h2>
 
@@ -22,13 +27,22 @@
             Hier kannst du automatisierte Benachrichtigungen für anstehenden TÜV oder HU/AU aktivieren.
           </p>
           <p>
-            Für die Hauptuntersuchung und einen Ölwechsel wirst du jeweils ungefährt 23 Monate nach der letzten
-            Untersuchung benachrichtigt, damit du die 2 Jahres-Pflicht einhalten kannst.
+            Wenn du Benachrichtigungen deaktivieren möchtest, musst du
           </p>
 
-          <input class="input" type="text" v-model="notification.hu" placeholder="Monate bis zur HU/AU Erinnerung">
+          <div class="field">
+            <label class="label">Monate bis zur HU / AU Erinnerung</label>
+            <div class="control">
+              <input class="input" type="text" v-model="notification.hu">
+            </div>
+          </div>
 
-          <input class="input" type="text" v-model="notification.oil" placeholder="Monate bis zur Ölwechsel Erinnerung">
+          <div class="field">
+            <label class="label">Monate bis zum Ölwechsel</label>
+            <div class="control">
+              <input class="input" type="text" v-model="notification.oil">
+            </div>
+          </div>
 
         </div>
       </div>
