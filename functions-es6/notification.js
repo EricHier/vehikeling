@@ -58,9 +58,9 @@ export async function runForUser (user) {
       answer += "How many days to Oil notification: " + oil_diff + "<br><br>";
 
       if (hu_diff === 0)
-        sendHUNotificationForCar(uID, carID);
+        sendHUNotificationForCar(user, car, hu);
       if (oil_diff === 0)
-        sendOilNotificationForCar(uID, carID);
+        sendOilNotificationForCar(user, car, oil);
 
     }
 
@@ -72,11 +72,17 @@ export async function runForUser (user) {
   return answer;
 }
 
-function sendHUNotificationForCar (uID, carID) {
-
+function getCarNameFromCar (car) {
+  return car.name.length !== 0 ? car.name : (car.hersteller.length !== 0 ? car.hersteller + " " + car.model : car.model);
 }
 
-function sendOilNotificationForCar (uID, carID) {
+function sendHUNotificationForCar (user, car) {
+  const subject = "Für dein Auto " + getCarNameFromCar(car) + " steht jetzt bald wieder eine HU an";
+  const message = "Hallo " + user.displayName  + " "
+  sendNotificationMail(user.displayName, user.email, "")
+}
+
+function sendOilNotificationForCar (uID, car) {
 
 }
 
