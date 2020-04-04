@@ -51,7 +51,7 @@
     import Input from "./Input";
     import Loading from "./Loading"
     import {storage, auth, db} from '../services/firebase.js'
-    import uuid from 'uuid'
+    import {v4 as uuid} from 'uuid'
     import VueScrollTo from 'vue-scrollto'
     import Error from "./Error";
 
