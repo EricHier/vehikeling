@@ -43,7 +43,6 @@ export default {
   */
   css: [
     "~/css/main.css",
-    "~/assets/sass/index.scss",
   ],
 
   /*
