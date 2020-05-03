@@ -10,10 +10,10 @@
     "start": "nuxt start",
     "generate and deploy": "nuxt generate && firebase deploy --only hosting",
 
-    "prebuild-functions": "# node node_modules/rimraf/bin functions",
+    "prebuild-functions": "node node_modules/rimraf/bin functions",
     "build-functions": "babel functions-es6 --out-dir functions --copy-files --ignore functions-es6/node_modules",
-    "postbuild-functions": "# cd functions && npm i -s",
-    "deploy-functions": "npm run build-functions && firebase deploy --only=functions"
+    "postbuild-functions": "cd functions && npm i -s",
+    "deploy-functions": "firebase deploy --only=functions"
   },
   "dependencies": {
     "@nuxtjs/bulma": "^1.2.7",

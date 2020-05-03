@@ -1,5 +1,5 @@
 import * as functions from "firebase-functions"
-import {runForUser} from "./notification";
+import {run, runForUser} from "./notification";
 import {backup} from "./backup";
 
 export let scheduledFirestoreExport = functions.pubsub
@@ -13,13 +13,9 @@ export let scheduledFirestoreExport = functions.pubsub
     }
   });
 
-/*exports.notifications = functions-es6.pubsub
-  .schedule('0 10 * * *')
+export let notificationsWorker = functions.pubsub
+  .schedule('0 14 * * *')
   .timeZone('Europe/Berlin')
   .onRun(async context => {
-    await runForUser();
-  });*/
-
-export let notificationsTest = functions.https.onRequest(async (req, res) => {
-    await res.send( await runForUser({id: "wvdf5RlAYQhys5JC0A6mEQU897J2", notification_hu: true, notification_oil: false}));
-});
+    run();
+  });

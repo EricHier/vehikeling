@@ -1,36 +1,37 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
+import {sendNotificationMail} from "./mail";
 
 admin.initializeApp(functions.config().firebase);
 
 let db = admin.firestore();
-let usersRef = db.collection("users");
+let usersRef = db.collection("user");
 
-/*
-usersRef.get().then(async snapshot => {
-  for (const doc of snapshot) {
+export function run() {
+  usersRef.get().then(snapshot => {
+    snapshot.forEach((doc) => {
 
-    let user = doc.data();
-    user.id = doc.id;
+      let user = doc.data();
+      user.uid = doc.id;
 
-    await runForUser(user);
+      console.log("User: ",user.uid);
 
-  }
-});*/
+      runForUser(user);
+    });
+  });
+}
 
 export async function runForUser (user) {
-  let answer = "For user " + user.id;
-
-  answer += "Days Sindce Epoch: " + getDaysSinceEpoch() + "<br>";
+  let authUser = await admin.auth().getUser(user.uid);
+  user.email = authUser.email;
+  user.displayName = authUser.displayName;
 
   try {
-    let uID = user.id;
+    let uID = user.uid;
     let hu = user.notification_hu * 30;
     let oil = user.notification_oil * 30;
 
     let cars = await getCarsForUserID(uID);
-
-    answer += " found " + cars.length + " cars <br>";
 
     for (const car of cars) {
 
@@ -41,49 +42,30 @@ export async function runForUser (user) {
       let latest_hu = await getLatestFromServicesArray(services_hu);
       let latest_oil = await getLatestFromServicesArray(services_oil);
 
-      answer += "For car " + carID + " found " + services_hu.length + "x HU-Entries <br>";
-      answer += "Latest: " + JSON.stringify(latest_hu.daysSinceEpoch) + " <br>";
-
-
-      answer += "For car " + carID + " found " + services_oil.length + "x Oil-Entries<br>";
-      answer += "Latest: " + JSON.stringify(latest_oil.daysSinceEpoch) + "<br>";
-
       latest_hu.daysSinceEpoch += hu;
       latest_oil.daysSinceEpoch += oil;
 
       let hu_diff = latest_hu.daysSinceEpoch - getDaysSinceEpoch();
       let oil_diff = latest_oil.daysSinceEpoch - getDaysSinceEpoch();
 
-      answer += "How many days to HU notification: " + hu_diff+ "<br>";
-      answer += "How many days to Oil notification: " + oil_diff + "<br><br>";
+      if (user.uid === "yFUcy157M5T6wfOZgHmwz39Nant2") {
+        console.log(user.email, hu_diff, oil_diff);
+      }
 
       if (hu_diff === 0)
-        sendHUNotificationForCar(user, car, hu);
+        sendNotificationMail(user.displayName, user.email, car, "hu");
       if (oil_diff === 0)
-        sendOilNotificationForCar(user, car, oil);
+        sendNotificationMail(user.displayName, user.email, car, "oil");
 
     }
 
   } catch (e) {
     console.log(e);
-    answer += e;
   }
-
-  return answer;
 }
 
 function getCarNameFromCar (car) {
   return car.name.length !== 0 ? car.name : (car.hersteller.length !== 0 ? car.hersteller + " " + car.model : car.model);
-}
-
-function sendHUNotificationForCar (user, car) {
-  const subject = "Für dein Auto " + getCarNameFromCar(car) + " steht jetzt bald wieder eine HU an";
-  const message = "Hallo " + user.displayName  + " "
-  sendNotificationMail(user.displayName, user.email, "")
-}
-
-function sendOilNotificationForCar (uID, car) {
-
 }
 
 function getDaysSinceEpoch () {

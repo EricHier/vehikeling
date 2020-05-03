@@ -102,3 +102,7 @@ firestore.rules
 /static/edit.png
 sendgrid.env
 /functions/
+/functions/
+/functions/backup.js
+/functions/package.json
+/functions/package-lock.json
