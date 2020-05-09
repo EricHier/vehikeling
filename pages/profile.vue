@@ -24,25 +24,30 @@
         <div class="column content">
           <h2 class="title is-4">Benachrichtigungs-Einstellungen</h2>
           <p>
-            Hier kannst du automatisierte Benachrichtigungen für anstehenden TÜV oder HU/AU aktivieren.
+            Hier kannst du automatisierte Benachrichtigungen für einen anstehenden Ölwechsel oder eine HU/AU aktivieren.
           </p>
           <p>
-            Wenn du Benachrichtigungen deaktivieren möchtest, musst du
+            Wenn du Benachrichtigungen deaktivieren möchtest, musst du unten nur die Anzahl der Monate eingeben, nach denen du erinnert werden möchtest.
+          </p>
+          <p>
+            Benachrichtigungen sind deaktiviert, wenn du eine negative Zahl eingibst.
           </p>
 
           <div class="field">
             <label class="label">Monate bis zur HU / AU Erinnerung</label>
             <div class="control">
-              <input class="input" type="text" v-model="notification.hu">
+              <input class="input" type="number" v-model="notification.hu">
             </div>
           </div>
 
           <div class="field">
             <label class="label">Monate bis zum Ölwechsel</label>
             <div class="control">
-              <input class="input" type="text" v-model="notification.oil">
+              <input class="input" type="number" v-model="notification.oil">
             </div>
           </div>
+
+          <p>Deine Einstellung wird automatisch gespeichert.</p>
 
         </div>
       </div>
@@ -63,8 +68,8 @@
         error: "",
         recieved: false,
         notification: {
-          hu: 22,
-          oil: 12
+          hu: "-1",
+          oil: "-1"
         }
       }
     },
@@ -80,7 +85,7 @@
           notification_oil: data.oil
         };
 
-        ref.set(dbdata).catch(err => {
+        ref.set(dbdata).catch(() => {
           self.error = "Konnte kein Verbindung zur Datenbank herstellen. "
         });
       }
@@ -112,8 +117,8 @@
               self.notification.hu = data.notification_hu;
               self.notification.oil = data.notification_oil;
             } else {
-              self.notification.hu = false;
-              self.notification.oil = false;
+              self.notification.hu = -1;
+              self.notification.oil = -1;
             }
 
             self.recieved = true;
@@ -125,6 +130,9 @@
       },
       notification: {
         handler(val) {
+          val.hu = typeof val.hu === "undefined" ? "-1" : val.hu;
+          val.oil = typeof val.oil === "undefined" ? "-1" : val.oil;
+          console.log(val)
           this.uploadNewData(val);
         },
         deep: true
