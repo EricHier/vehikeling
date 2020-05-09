@@ -132,6 +132,7 @@
             this.description = e.description;
             this.date = e.date;
             this.category = e.category;
+            this.kilometerstand = e.kilometerstand;
             this.id = e.id;
         }
     }
