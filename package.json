@@ -8,7 +8,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate and deploy": "nuxt generate && firebase deploy --only hosting",
+    "generate": "nuxt generate",
     "prebuild-functions": "node node_modules/rimraf/bin functions",
     "build-functions": "babel functions-es6 --out-dir functions --copy-files --ignore functions-es6/node_modules",
     "postbuild-functions": "cd functions && npm i -s",
