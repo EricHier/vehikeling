@@ -33,7 +33,6 @@ export default {
   loading: { color: '#fff' },
 
   css: [
-    "~/css/main.css",
   ],
 
   plugins: [

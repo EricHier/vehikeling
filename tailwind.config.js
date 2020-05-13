@@ -32,5 +32,6 @@ module.exports = {
   purge: [
     './components/**/*.vue',
     './pages/**/*.vue',
+    './layouts/**/*.vue',
   ],
 };
