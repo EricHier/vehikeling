@@ -14,10 +14,6 @@
 
 /* Utilites */
 
-.no-bottom-margin {
-  margin-bottom: 0 !important;
-}
-
 .w-fit {
   width: fit-content !important;
 }

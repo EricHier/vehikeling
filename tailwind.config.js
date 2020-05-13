@@ -29,4 +29,8 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  purge: [
+    './components/**/*.vue',
+    './pages/**/*.vue',
+  ],
 };

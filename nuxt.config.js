@@ -50,8 +50,12 @@ export default {
     exposeConfig: false
   },
 
+  purgeCSS: {
+    mode: 'postcss',
+    enabled: (process.env.NODE_ENV === 'production')
+  },
+
   modules: [
-    // '@nuxtjs/bulma',
     '@nuxtjs/pwa',
   ],
 
