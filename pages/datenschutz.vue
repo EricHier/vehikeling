@@ -1,12 +1,12 @@
 <template>
-  <section class="section">
-    <div class="container content">
+  <section>
+    <div class="container">
       <h1>Datenschutzerklärung</h1>
       <p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO),
         ist:</p>
       <p>
         Eric Feltgen:
-        <nuxt-link to="/kontakt">Kontaktieren Sie mich</nuxt-link>
+        <nuxt-link class="text-blue-800 font-bold" to="/kontakt">Kontaktieren Sie mich</nuxt-link>
       </p>
       <h2>Ihre Betroffenenrechte</h2>
       <p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten können Sie jederzeit folgende Rechte
@@ -31,7 +31,7 @@
         Behörde.</p>
       <p>Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich) mit Anschrift finden Sie unter: <a
         href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html" target="_blank"
-        rel="nofollow noopener">https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html</a>.
+        rel="nofollow noopener" class="text-blue-800 font-bold" >https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html</a>.
       </p>
       <p></p>
       <h2>Erfassung allgemeiner Informationen beim Besuch unserer Website</h2>
@@ -102,18 +102,18 @@
         blockiert werden können. Je nach Anbieter Ihres Browsers finden Sie die notwendigen Informationen unter den
         nachfolgenden Links:</p>
       <ul>
-        <li>Mozilla Firefox: <a href="https://support.mozilla.org/de/kb/cookies-loeschen-daten-von-websites-entfernen"
+        <li>Mozilla Firefox: <a href="https://support.mozilla.org/de/kb/cookies-loeschen-daten-von-websites-entfernen" class="text-blue-800 font-bold"
                                 target="_blank" rel="nofollow noopener">https://support.mozilla.org/de/kb/cookies-loeschen-daten-von-websites-entfernen</a>
         </li>
         <li>Internet Explorer: <a
-          href="https://support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies"
+          href="https://support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies" class="text-blue-800 font-bold"
           target="_blank" rel="nofollow noopener">https://support.microsoft.com/de-de/help/17442/windows-internet-explorer-delete-manage-cookies</a>
         </li>
-        <li>Google Chrome: <a href="https://support.google.com/accounts/answer/61416?hl=de" target="_blank"
+        <li>Google Chrome: <a href="https://support.google.com/accounts/answer/61416?hl=de" target="_blank" class="text-blue-800 font-bold"
                               rel="nofollow noopener">https://support.google.com/accounts/answer/61416?hl=de</a></li>
-        <li>Opera: <a href="http://www.opera.com/de/help" target="_blank" rel="nofollow noopener">http://www.opera.com/de/help</a>
+        <li>Opera: <a href="http://www.opera.com/de/help" class="text-blue-800 font-bold" target="_blank" rel="nofollow noopener">http://www.opera.com/de/help</a>
         </li>
-        <li>Safari: <a href="https://support.apple.com/kb/PH17191?locale=de_DE&viewlocale=de_DE" target="_blank"
+        <li>Safari: <a href="https://support.apple.com/kb/PH17191?locale=de_DE&viewlocale=de_DE" target="_blank" class="text-blue-800 font-bold"
                        rel="nofollow noopener">https://support.apple.com/kb/PH17191?locale=de_DE&viewlocale=de_DE</a>
         </li>
       </ul>
@@ -164,3 +164,25 @@
     </div>
   </section>
 </template>
+<style scoped lang="scss">
+  h1 {
+    @apply text-2xl font-semibold mb-6;
+  }
+
+  h2 {
+    @apply text-xl font-semibold mb-6;
+  }
+
+  h3 {
+    @apply text-lg font-semibold mb-6;
+  }
+
+
+  ul {
+    @apply list-disc ml-8 mb-4;
+  }
+
+  p {
+    @apply mb-4;
+  }
+</style>

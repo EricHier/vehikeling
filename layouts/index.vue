@@ -1,18 +1,16 @@
 <template>
   <div>
-    <section class="hero is-medium is-primary is-bold">
-      <div class="hero-head">
+    <section class="bg-hero flex flex-col justify-between text-white is-bold">
+      <div class="flex-shrink-0 flex-grow-0">
         <Navbar/>
       </div>
-      <div class="hero-body">
-        <div class="container">
-          <h2 class="title is-2" id="title">
-            vehikeling
-          </h2>
-          <h1 class="subtitle is-4">
-            Die Vehikel-Servecing App für deine Fahrzeuge. Ganz einfach Wartungen und Services eintragen und verwalten.
-          </h1>
-        </div>
+      <div class="container">
+        <h1 class="custom-title text-3xl">
+          vehikeling
+        </h1>
+        <h2>
+          Die Vehikel-Servecing App für deine Fahrzeuge.
+        </h2>
       </div>
     </section>
     <nuxt/>
@@ -21,8 +19,8 @@
 </template>
 
 <script>
-    import Navbar from '~/components/Navbar.vue'
-    import Footer from "../components/Footer";
+    import Navbar from '~/components/gui-components/Navbar.vue'
+    import Footer from "../components/gui-components/Footer";
 
     export default {
         layout: "index",
@@ -32,7 +30,6 @@
         }
     }
 </script>
-
 <style>
   html {
     background-color: #fafafa;

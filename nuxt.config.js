@@ -2,9 +2,6 @@
 export default {
   mode: 'spa',
 
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'vehikeling | Verwaltung für die Services deiner Fahrzeuge',
     meta: [
@@ -33,42 +30,31 @@ export default {
     }
   },
 
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#fff' },
 
-  /*
-  ** Global CSS
-  */
   css: [
     "~/css/main.css",
   ],
 
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     {src: '~/services/firebase.js'}, {src: "~/plugins/fireauth.js"}, {src: '~/assets/pwa-check.js'}
   ],
 
-  /*
-  ** Nuxt.js dev-modules
-  */
   buildModules: [
+    '@nuxtjs/tailwindcss'
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
+  tailwindcss: {
+    configPath: '~/tailwind.config.js',
+    cssPath: '~/assets/css/tailwind.scss',
+    exposeConfig: false
+  },
+
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
+    // '@nuxtjs/bulma',
     '@nuxtjs/pwa',
   ],
 
-  /*
-  ** Build configuration
-  */
   build: {
     postcss: {
       preset: {

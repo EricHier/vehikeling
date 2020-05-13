@@ -1,50 +1,44 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Profil</h1>
-      <h4 class="subtitle">Hier kannst du die Daten deines Profils einsehen und bearbeiten. </h4>
-
       <Error v-bind:error="error" v-if="error !== ''" />
 
       <p class="title content" v-if="user === null" style="margin-top: 1rem;">
         Es scheint so als bist du nicht angemeldet.
-        <a href="/" title="Startseite">Hier</a> geht es zum Login.
+        <nuxt-link to="/" class="text-link" title="Startseite">Hier</nuxt-link> geht es zum Login.
       </p>
 
-      <div class="columns" v-if="user !== null">
-        <div class="column content" v-if="user != null">
-          <h2 class="title is-4">Profil</h2>
+      <div class="md:flex mt-6" v-if="user !== null">
+        <div class="md:w-1/2 md:pr-4 w-full" v-if="user != null">
+          <h2 class="custom-title mb-4">Profil</h2>
 
           <p>Name: <b>{{user.displayName}}</b></p>
           <p>E-Mail: <b>{{user.email}}</b></p>
           <p>Registrierung: Über Google</p>
-          <p>Bei Fragen oder Kontakt: <br><a href="mailto:developer.erichier@gmail.com">Mail an developer.erichier@gmail.com</a></p>
+          <p>Bei Fragen oder Kontakt: <br><a class="text-link" href="mailto:developer.erichier@gmail.com">Mail an developer.erichier@gmail.com</a></p>
         </div>
-        <div class="is-divider-vertical" ></div>
-        <div class="column content">
-          <h2 class="title is-4">Benachrichtigungs-Einstellungen</h2>
+        <div class="w-px self-stretch bg-gray-400 mb-4"></div>
+        <div class="md:w-1/2 w-full md:pl-4">
+          <h2 class="custom-title mb-4">Benachrichtigungs-Einstellungen</h2>
           <p>
             Hier kannst du automatisierte Benachrichtigungen für einen anstehenden Ölwechsel oder eine HU/AU aktivieren.
           </p>
           <p>
-            Wenn du Benachrichtigungen deaktivieren möchtest, musst du unten nur die Anzahl der Monate eingeben, nach denen du erinnert werden möchtest.
+            Wenn du Benachrichtigungen aktivieren möchtest, musst du unten nur die Anzahl der Monate eingeben, nach denen du erinnert werden möchtest.
+            Die Benachrichtigung gelten für alle Autos und auch für alle bereits eingetragenen Services.
           </p>
           <p>
             Benachrichtigungen sind deaktiviert, wenn du eine negative Zahl eingibst.
           </p>
 
           <div class="field">
-            <label class="label">Monate bis zur HU / AU Erinnerung</label>
-            <div class="control">
-              <input class="input" type="number" v-model="notification.hu">
-            </div>
+            <label>Monate bis zur HU / AU Erinnerung</label>
+            <input class="custom-input" type="number" v-model="notification.hu">
           </div>
 
-          <div class="field">
-            <label class="label">Monate bis zum Ölwechsel</label>
-            <div class="control">
-              <input class="input" type="number" v-model="notification.oil">
-            </div>
+          <div class="my-4">
+            <label>Monate bis zum Ölwechsel</label>
+            <input class="custom-input" type="number" v-model="notification.oil">
           </div>
 
           <p>Deine Einstellung wird automatisch gespeichert.</p>
@@ -56,7 +50,7 @@
 </template>
 <script>
   import {auth, db} from '~/services/firebase.js';
-  import Error from "../components/Error";
+  import Error from "../components/gui-components/Error";
 
   export default {
     components: {
@@ -141,6 +135,8 @@
   }
 
 </script>
-<style>
-
+<style scoped lang="scss">
+  p {
+    @apply mb-4;
+  }
 </style>

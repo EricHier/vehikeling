@@ -1,17 +1,18 @@
 <template>
   <div>
-    <section class="section">
+    <section>
       <div class="container">
-        <div class="columns is-multiline">
-          <div class="column is-one-third">
-            <nuxt-link to="/cars" class="button is-fullwidth margin-bottom-15px" v-if="isMobileDevice" >Zurück zu Übersicht</nuxt-link>
-            <Car v-if="Object.entries(car).length !== 0" v-bind:car="car" v-bind:details="true"></Car>
-            <div class="card content print-disable" id="sidebar">
-              <ServicesSideBar v-on:newSearch="updateSearchTerm" v-bind:services="services"
-                               v-on:clicked="Object.entries(car).length !== 0 ? addService = true: ''"/>
-            </div>
+        <div class="flex flex-col-reverse md:flex-row">
+          <div class="md:w-1/3 w-full mb-4 md:mb-0">
+            <Car class="mb-4" v-bind:car="car" v-bind:details="true" v-if="!isMobileDevice && Object.entries(car).length !== 0" ></Car>
+            <ServicesSideBar v-on:newSearch="updateSearchTerm" v-bind:services="services"
+                             v-on:clicked="Object.entries(car).length !== 0 ? addService = true: ''"/>
+
           </div>
-          <div class="column is-two-third">
+          <div class="md:w-2/3 w-full">
+            <nuxt-link to="/cars" class="custom-button w-full block mb-4" v-if="isMobileDevice" >Zurück zu Übersicht</nuxt-link>
+            <Car class="mb-4" v-bind:car="car" v-bind:details="true" v-if="isMobileDevice && Object.entries(car).length !== 0" ></Car>
+
             <ServiceCollumn v-if="services !== []" v-bind:services="servicesSearch" v-on:delete="deleteService"
                             v-on:edit="editService"></ServiceCollumn>
             <Loading v-if="loading"/>
@@ -20,6 +21,7 @@
         </div>
       </div>
     </section>
+
     <Spenden v-bind:array="services"></Spenden>
     <AddService v-on:close="closedAddSearch" v-bind:service="currentService" v-bind:car="car" v-if="addService"/>
   </div>
@@ -27,12 +29,12 @@
 
 <script>
     import {auth, db} from '~/services/firebase.js'
-    import Car from "../../components/Car";
-    import Error from "../../components/Error";
-    import Loading from "../../components/Loading";
-    import ServiceCollumn from "../../components/ServiceCollumn";
-    import ServicesSideBar from "../../components/ServicesSideBar";
-    import AddService from "../../components/AddService";
+    import Car from "../../components/car-list/CarElement";
+    import Error from "../../components/gui-components/Error";
+    import Loading from "../../components/gui-components/Loading";
+    import ServiceCollumn from "../../components/service-list/ServiceCollumn";
+    import ServicesSideBar from "../../components/service-list/ServicesSideBar";
+    import AddService from "../../components/popups/AddService";
     import Spenden from "../../components/Spenden";
     import {isMobile} from "../../assets/pwa-check";
 
@@ -118,7 +120,7 @@
                         })
                     } else {
                         self.servicesSearch = [];
-                        self.error = "Zu diesem Auto gibt es leider noch keine Services. \nAber du kannst direkt anfangen, welche hinzu zu fügen. :)";
+                        self.error = "Zu diesem Auto gibt es leider noch keine Services. Aber du kannst direkt anfangen, welche hinzu zu fügen. :)";
                         self.loading = false;
                     }
                 }, err => {
@@ -162,21 +164,3 @@
         }
     }
 </script>
-
-<style scoped>
-  .section {
-    padding: 1.5rem 1.5rem;
-  }
-
-  .content {
-    padding: 15px;
-  }
-
-  #sidebar {
-    margin-top: 15px;
-  }
-
-  .margin-bottom-15px {
-    margin-bottom: 15px;
-  }
-</style>
