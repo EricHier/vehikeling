@@ -97,11 +97,7 @@ firebase.json
 firestore.indexes.json
 firestore.rules
 /.firebase
-/services/firebase-api.js
-/static/delete.png
-/static/edit.png
 sendgrid.env
-/functions/
 /functions/
 /functions/backup.js
 /functions/package.json
