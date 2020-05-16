@@ -1,23 +1,21 @@
 <template>
-  <div class="card roundBorders">
-    <img alt="Bild des Autos" class="image" v-bind:src="car.images.length === 0 ? '' : car.images[0]" width="100%"/>
-    <div class="content roundBorders" id="detailsContainer">
-      <h4 class="subtitle is-3">{{car.name.length !== 0 ? car.name : (car.hersteller.length !== 0 ? car.hersteller + " "
-        +
-        car.model : car.model )}}</h4>
+  <div class="custom-card">
+    <img alt="Bild des Autos" class="w-full rounded" v-bind:src="car.images.length === 0 ? '' : car.images[0]" width="100%"/>
+    <div class="relative m-4">
+      <h4 class="text-3xl mb-2 font-semibold">{{car.name.length !== 0 ? car.name : (car.hersteller.length !== 0 ? car.hersteller + " "  + car.model : car.model )}}</h4>
       <p>
         <span v-if="car.kennzeichen !== ''">Kennzeichen: {{car.kennzeichen}} <br></span>
         <span v-if="car.name.length !== 0">{{car.hersteller + " " + car.model}}</span>
       </p>
-      <p v-if="details" class="no-bottom-margin">
+      <p v-if="details">
         <span v-if="car.baujahr !== ''">Baujahr: {{car.baujahr}} <br></span>
         <span v-if="car.color !== ''">Farbe: {{car.color}} <br></span>
         <span v-if="car.fahrgestellnummer !== ''">Fahrgestellnummer: {{car.fahrgestellnummer}} <br></span>
         <span v-if="car.specs !== ''">Eigenschaften: {{car.specs}}</span>
       </p>
-      <img id="delete-img" src="../static/delete.png" v-bind:class="{'del-active' : deleteActive}" v-on:click="deleteCar"
+      <img class="absolute h-5 w-5 top-0 right-0 print-disable" src="../../static/delete.png"  v-bind:class="{'rounded-sm invert bg-green-600' : deleteActive}" v-on:click="deleteCar"
            v-show="details" alt="Delete Car" />
-      <img id="edit-img" src="../static/edit.png" v-on:click="editCar" v-show="details" alt="Edit Car" />
+      <img class="absolute h-5 w-5 top-7 right-0 print-disable" src="../../static/edit.png" v-on:click="editCar" v-show="details" alt="Edit Car" />
     </div>
     <AddCar class="print-disable" v-bind:car="car" v-if="editActive" v-on:click="preventClick"
             v-on:close="editActive = false" v-on:setCurrentCar="setCurrentCar"></AddCar>
@@ -25,8 +23,8 @@
 </template>
 
 <script>
-    import {auth, db, storage} from "../services/firebase";
-    import AddCar from "./AddCar";
+    import {auth, db, storage} from "../../services/firebase";
+    import AddCar from "../popups/AddCar";
 
     export default {
         name: 'Car',
@@ -85,84 +83,39 @@
 
 
             deleteCar(e) {
-                e.preventDefault();
-                if (this.deleteActive) {
-                    if (auth.currentUser === null)
-                        return;
+              e.preventDefault();
+              if (this.deleteActive) {
+                if (auth.currentUser === null)
+                  return;
 
-                    let self = this;
-                    let uid = auth.currentUser.uid;
+                let self = this;
+                let uid = auth.currentUser.uid;
 
-                    this.deleteCollection(db, db.collection("user").doc(uid).collection("cars").doc(self.car.id).collection("services"), 1000);
-                    db.collection("user").doc(uid).collection("cars").doc(self.car.id).delete();
-                    self.car.images.forEach(async function (image) {
-                        storage.refFromURL(image).delete();
-                    });
-                    this.$router.push("/cars");
+                this.deleteCollection(db, db.collection("user").doc(uid).collection("cars").doc(self.car.id).collection("services"), 1000);
+                db.collection("user").doc(uid).collection("cars").doc(self.car.id).delete();
+                self.car.images.forEach(async function (image) {
+                  storage.refFromURL(image).delete();
+                });
+                this.$router.push("/cars");
 
-                } else {
-                    this.deleteActive = true;
-                }
-            }
-            ,
+              } else {
+                this.deleteActive = true;
+
+                setTimeout(() => {
+                  this.deleteActive = false;
+                }, 1000);
+              }
+            },
             editCar(e) {
                 e.preventDefault();
                 e.stopPropagation();
 
                 let self = this;
                 self.editActive = true;
-            }
-            ,
+            },
             setCurrentCar(e) {
                 this.currentCar = e;
             }
         }
     }
 </script>
-
-<style scoped>
-
-  .image {
-    border: 5px solid #ffffff00;
-    border-radius: 10px;
-  }
-
-  .subtitle {
-    margin-bottom: 10px;
-  }
-
-  .content {
-    padding: 15px;
-  }
-
-  .roundBorders {
-    border: 1px solid #ffffff00;
-    border-radius: 5px;
-  }
-
-  .del-active {
-    background-color: #BF1F2F;
-    border-radius: 2px;
-    filter: invert(1);
-  }
-
-  #delete-img {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 20px;
-    width: 20px;
-  }
-
-  #edit-img {
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    height: 20px;
-    width: 20px;
-  }
-
-  #detailsContainer {
-    position: relative;
-  }
-</style>

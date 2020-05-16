@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-bind:key="service.id" v-for="service in services">
-      <div class="columns is-fullwidth mehr-abstand fade-in-quick">
-        <div class="column is-2 kein-innenabstand">
-          <p class="centered">{{service.date.split("-").reverse().join(".") }}</p>
+      <div class="md:flex w-full mb-6">
+        <div class="md:w-1/4 p-4 flex flex-row justify-end items-center">
+          <p>{{service.date.split("-").reverse().join(".") }}</p>
         </div>
 
-        <div class="column is-10">
+        <div class="md:w-3/4">
           <Service v-bind:service="service" v-on:delete="deleteService" v-on:edit="editService"></Service>
         </div>
       </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Service from "./Service";
+    import Service from "./ServiceElement";
 
     export default {
         name: 'ServiceCollumn',
@@ -40,14 +40,6 @@
       transform: translateY(-50%);
       text-align: right;
     }
-  }
-
-  .centered {
-    min-width: 80px;
-  }
-
-  .mehr-abstand {
-    margin-bottom: 20px;
   }
 
   @media only screen and (max-width: 1000px) {

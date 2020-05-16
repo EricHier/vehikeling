@@ -1,9 +1,9 @@
 <template>
-  <div id="allesGrau" v-on:click="onPopupClick">
-    <div id="popup" v-on:click="onPopupClick">
-      <div id="formContainer" v-on:click="onFormClick" v-on:keydown="onFormKeydown">
+  <PopupContainer :onFormClick="onFormClick" :onFormKeydown="onFormKeydown">
+    <div>
+
         <form v-on:submit="pushNewService" v-if="!disabled">
-          <h1 class="title is-4">Service hinzufügen</h1>
+          <h1 class="custom-title">Service hinzufügen</h1>
           <Input v-on:newValue="newTitle" v-bind:default="title" v-bind:label="'Was wurde gemacht? * '" v-bind:is-big="false" v-bind:required="true"
                  v-bind:image="false" v-bind:disabled="disabled"/>
           <Input v-on:newValue="newDescription" v-bind:default="description" v-bind:label="'Details'" v-bind:is-big="true" v-bind:required="false"
@@ -12,12 +12,12 @@
           <Input v-on:newValue="newKilometerstand" v-bind:default="kilometerstand" v-bind:label="'Kilometerstand'" v-bind:is-big="false" v-bind:required="false"
                  v-bind:image="false" v-bind:disabled="disabled" v-bind:number="true"/>
 
-          <label class="label">Datum</label>
-          <input type="date" class="date input genug-margin" v-model="date" required/>
+          <label class="block mt-2">Datum</label>
+          <input type="date" class="block mt-1 w-full border border-black p-2 outline-none rounded" v-model="date" required/>
 
-          <label class="label">Kategorie *</label>
-          <div class="genug-margin select select-full-width">
-            <select required v-model="category" class="select select-full-width">
+          <label class="block mt-2">Kategorie *</label>
+          <div class="block mt-1 w-full">
+            <select required v-model="category" class="w-full outline-none p-2 rounded">
               <option>Kauf</option>
               <option>HU / AU</option>
               <option>Ölwechsel</option>
@@ -26,25 +26,25 @@
             </select>
           </div>
 
-          <input v-bind:disabled="disabled" class="button is-primary is-fullwidth" type="submit"
+          <input v-bind:disabled="disabled" class="custom-button mt-4" type="submit"
                  name="Speichern" />
+
+          <button v-bind:disabled="disabled"  class="custom-button mt-2" v-on:click="$emit('close')">Schließen</button>
         </form>
         <Loading v-if="disabled" />
-      </div>
     </div>
-
-  </div>
+  </PopupContainer>
 </template>
-
 <script>
-    import Input from "./Input";
-    import Loading from "./Loading"
-    import {auth, db} from '../services/firebase.js'
+    import Input from "../gui-components/Input";
+    import Loading from "../gui-components/Loading"
+    import {auth, db} from '../../services/firebase.js'
     import VueScrollTo from 'vue-scrollto'
+    import PopupContainer from "../gui-components/PopupContainer"
 
     export default {
         name: 'AddService',
-        components: {Input, Loading},
+        components: {Input, Loading, PopupContainer},
         props: ["car", "service"],
         data() {
             return {
@@ -137,58 +137,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-  .select-full-width {
-    width: 100%;
-  }
-
-  .genug-margin {
-    margin-bottom: 0.75rem;
-  }
-
-  #popup {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 128;
-  }
-
-  #formContainer {
-    min-width: 250px;
-    max-width: 500px;
-    width: calc(100% - 30px);
-    margin: 15px;
-    height: fit-content;
-    position: relative;
-    top: 0;
-    left: 50%;
-    transform: translate(calc(-50% - 15px), 0px);
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-  }
-
-  @media only screen and (min-height: 1000px) {
-    #formContainer {
-      top: 50%;
-      left: 50%;
-      transform: translate(calc(-50% - 15px), calc(-50% - 15px));
-    }
-  }
-
-
-  #allesGrau {
-    width: 100%;
-    height: 1000%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 127;
-  }
-
-</style>

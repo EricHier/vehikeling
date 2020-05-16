@@ -1,6 +1,6 @@
 <template>
-  <section class="section">
-    <div class="container content">
+  <section>
+    <div class="container text-justify">
       <h1>Impressum</h1>
 
       <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
@@ -16,9 +16,22 @@
     </div>
   </section>
 </template>
-<script>
+<style scoped lang="scss">
+  h1 {
+    @apply text-2xl font-semibold mb-6;
+  }
 
-</script>
-<style scoped>
+  h2 {
+    @apply text-xl font-semibold mb-6;
+  }
 
+  h3 {
+    @apply text-lg font-semibold mb-6;
+  }
+
+
+  p {
+    @apply mb-4;
+  }
 </style>
+

@@ -1,103 +1,84 @@
 <template>
   <div>
-    <section class="section has-gray-background content">
-      <div class="container normaler-bottom-margin">
-        <div class="columns is-fullwidth">
-          <div class="column is-5">
+    <section class="bg-footer">
+      <div class="container mx-auto">
+        <div class="md:flex w-full justify-center items-center">
+          <div class="md:w-2/5 p-4 w-full">
             <Car v-bind:car="car"/>
           </div>
-          <div class="column is-7 is-vertical-center">
-            <div class="has-text-centered is-fullwidth">
-              <h2 class="title is-3">
-                Füge deine Motorräder, Oldtimer und Sportwagen hinzu
-              </h2>
-              <p class="smaller">
-                Du kannst all deine Fahrzeuge mit Bildern, technischen Daten und weiten Detais in der App speichern und
-                verwalten. Dabei ist es egal, ob es sich um Sportwagen, Oldtimer, Motorräder oder Traktoren handelt.
-              </p>
-            </div>
+          <div class="md:w-3/5 w-full text-center p-4 py-8">
+            <h2 class="text-2xl font-semibold mb-3">
+              Füge deine Motorräder, Oldtimer und Sportwagen hinzu
+            </h2>
+            <p class="text-justify md:text-center">
+              Du kannst all deine Fahrzeuge mit Bildern, technischen Daten und weiten Detais in der App speichern und
+              verwalten. Dabei ist es egal, ob es sich um Sportwagen, Oldtimer, Motorräder oder Traktoren handelt.
+            </p>
           </div>
         </div>
       </div>
     </section>
-    <section class="section content">
-      <div class="container normaler-bottom-margin">
-        <div class="columns  is-fullwidth">
-          <div class="column is-7 is-vertical-center">
-            <div class="has-text-centered is-fullwidth">
-              <h2 class="title is-3">
-                Speichere die Wartungsarbeiten und Services für deine Fahrzeuge
-              </h2>
-              <p class="smaller">
-                Damit du immer mit wenigen Clicks sehen kannst, wan zuletzt das Öl gewechselt oder der TÜV gemacht
-                wurde, kannst du alle deine Services
-                hier eintragen und in einer übersichtlichen Timeline anzeigen und durchsuchen. Wir machen das verwalten
-                deiner Services kinderleicht.
-              </p>
-            </div>
+    <section class="bg-white">
+      <div class="container mx-auto">
+        <div class="md:flex w-full justify-center items-center">
+          <div class="md:w-3/5 w-full p-4 py-8">
+            <h2 class="text-2xl font-semibold mb-3 text-center">
+              Speichere die Wartungsarbeiten und Services für deine Fahrzeuge
+            </h2>
+            <p class="text-justify md:text-center">
+              Damit du immer mit wenigen Clicks sehen kannst, wan zuletzt das Öl gewechselt oder der TÜV gemacht
+              wurde, kannst du alle deine Services
+              hier eintragen und in einer übersichtlichen Timeline anzeigen und durchsuchen. Wir machen das verwalten
+              deiner Services kinderleicht.
+            </p>
           </div>
-          <div class="column is-5">
+          <div class="md:w-2/5 w-full p-4 text-center">
             <ServiceCollumn v-bind:services="services"/>
           </div>
         </div>
       </div>
     </section>
-    <section class="section content has-gray-background" v-show="uid == ''">
-      <div class="container normaler-bottom-margin">
-        <div class="columns  is-fullwidth">
-          <div class="column is-5 buttonContent">
-            <div>
-              <div class="is-vertical-center">
-                <button class="button is-success margin-auto" v-on:click="googleSignIn">Google Sign-In</button>
-                <br>
-              </div>
-              <div class="is-vertical-center">
-                <p id="datenschutz">Mit der Anmeldung akzeptieren Sie die
-                  <nuxt-link to="/datenschutz">Datenschutzbestimmungen</nuxt-link>
-                  .
-                </p>
-              </div>
-            </div>
+    <section class="bg-footer" v-show="uid == ''">
+      <div class="container mx-auto">
+        <div class="md:flex w-full justify-center items-center">
+          <div class="md:w-2/5 w-full p-4 py-8 text-center">
+            <button class="custom-button text-xl font-semibold w-fit mx-auto px-4 mb-2" v-on:click="googleSignIn">Google Sign-In</button>
+            <p>Mit der Anmeldung akzeptieren Sie die <nuxt-link to="/datenschutz" class="text-blue-800">Datenschutzbestimmungen</nuxt-link>.</p>
           </div>
-          <div class="column is-7 is-vertical-center">
-            <div class="has-text-centered is-fullwidth">
-              <h3 class="title is-3">
-                Bereit es auszuprobieren?
-              </h3>
-              <p class="smaller">
-                Probier es einfach aus! Es ist kostenlos und super einfach. :)
-              </p>
-            </div>
+          <div class="md:w-3/5 w-full p-4 text-center">
+            <h3 class="text-2xl font-semibold mb-3 text-center">
+              Bereit es auszuprobieren?
+            </h3>
+            <p>
+              Probier es einfach aus! Es ist kostenlos und super einfach. :)
+            </p>
           </div>
         </div>
       </div>
     </section>
-    <section class="section content" v-show="uid == ''">
-      <div class="container normaler-bottom-margin">
-        <div class="columns  is-fullwidth">
-          <div class="column is-12">
-            <div class="has-text-centered is-fullwidth">
-              <h3 class="title is-3">
-                Noch Fragen?
-              </h3>
-              <p class="smaller">
-                Schreib mir einfach! Ich als Hobby-Entwickler würde mich über Verbesserungsvorscläge oder Fehler-Reports
-                jederzeit freuen. ^^<br>
-                <button class="button kontakt-button-margin">
-                  <nuxt-link to="/kontakt">Kontakt</nuxt-link>
-                </button>
-              </p>
-            </div>
+    <section class="bg-white" v-show="uid == ''">
+      <div class="container mx-auto">
+        <div class="md:flex w-full justify-center items-center">
+          <div class="md:w-2/5 w-full p-4 py-8 text-center">
+            <h3 class="text-2xl font-semibold mb-3 text-center">
+              Noch Fragen?
+            </h3>
+          </div>
+          <div class="md:w-3/5 w-full p-4 text-center">
+            <p>
+              Schreib mir einfach! Ich als Hobby-Entwickler würde mich über Verbesserungsvorscläge oder Fehler-Reports
+              jederzeit freuen. ^^
+              <nuxt-link class="text-blue-800 block mt-2" to="/kontakt">Kontakt</nuxt-link>
+            </p>
           </div>
         </div>
       </div>
     </section>
   </div>
 </template>
-
 <script>
-    import Car from "../components/Car";
-    import ServiceCollumn from "../components/ServiceCollumn";
+    import Car from "../components/car-list/CarElement";
+    import ServiceCollumn from "../components/service-list/ServiceCollumn";
     import {auth, db, GoogleProvider} from '../services/firebase.js'
     import VueScrollTo from 'vue-scrollto'
 
@@ -196,49 +177,3 @@
         }
     }
 </script>
-
-<style scoped>
-  .is-vertical-center {
-    display: flex;
-    align-items: center;
-  }
-
-  #datenschutz {
-    margin: 10px;
-    text-align: center;
-  }
-
-  .is-fullwidth {
-    width: 100%;
-    margin: 0px;
-  }
-
-  .kontakt-button-margin {
-    margin: 15px;
-  }
-
-  @media only screen and (min-width: 1000px) {
-    .smaller {
-      margin-left: 50px;
-      margin-right: 50px;
-    }
-  }
-
-  .has-gray-background {
-    background-color: #fafafa;
-  }
-
-  .buttonContent {
-    justify-content: center;
-    display: flex;
-  }
-
-  .normaler-bottom-margin {
-    margin-bottom: 0px;
-  }
-
-  .margin-auto {
-    margin: auto;
-  }
-
-</style>
